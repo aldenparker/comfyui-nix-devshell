@@ -68,8 +68,12 @@ pkgs.mkShell rec {
   ];
 
   LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
-  CUDA_PATH = pkgs.lib.optionalString (variant == "CUDA") pkgs.cudaPackages.cudatoolkit;
-  EXTRA_LDFLAGS = pkgs.lib.optionalString (
-    variant == "CUDA"
-  ) "-L${pkgs.linuxPackages.nvidia_x11_beta}/lib";
+  CUDA_PATH = pkgs.lib.optionalString (
+    variant == "CUDA" || variant == "CUDA-BETA"
+  ) pkgs.cudaPackages.cudatoolkit;
+  EXTRA_LDFLAGS =
+    pkgs.lib.optionalString (variant == "CUDA" || variant == "CUDA-BETA")
+      "-L${
+        (if variant == "CUDA" then pkgs.linuxPackages.nvidia_x11 else pkgs.linuxPackages.nvidia_x11_beta)
+      }/lib";
 }
