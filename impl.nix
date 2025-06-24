@@ -38,7 +38,11 @@ pkgs.mkShell rec {
     hardware_deps
     ++ [
       git # The program instantly crashes if git is not present, even if everything is already downloaded
-      python310
+      (python312.withPackages (
+        p: with p; [
+          pip
+        ]
+      ))
       stdenv.cc.cc.lib
       stdenv.cc
       ncurses5
