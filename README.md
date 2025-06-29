@@ -3,7 +3,7 @@ This project is a nix devshell for using ComfyUI as it is meant to be without ru
 
 ## Install
 ```
-git clone https://github.com/aldenparker/comfyui-nix-devshell
+git clone --recurse-submodule https://github.com/aldenparker/comfyui-nix-devshell
 cd comfyui-nix-devshell
 nix develop ./#cuda # Make sure change this based on what you are running
 cd ComfyUI
