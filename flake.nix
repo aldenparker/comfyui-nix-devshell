@@ -28,7 +28,7 @@
     in
     {
       devShells = forAllSystems (pkgs: {
-        default = throw "You need to specify which output you want: CPU, ROCm, or CUDA.";
+        default = throw "You need to specify which output you want: CPU, ROCm, CUDA, or CUDA-BETA.";
         cpu = import ./impl.nix {
           inherit pkgs;
           variant = "CPU";
